@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -eu
+
+image=${IMAGE:?IMAGE variable is blank. Example: IMAGE=circleci-bundle-update-pr}
+user=${DOCKER_HUB_USER:?}
+password=${DOCKER_HUB_PASSWORD:?}
+version=${VERSION:-latest}
+
+cd "$(dirname "$0")/../${image}/images/${version}"
+
+docker login -u ${user} -p ${password}
+docker push ${user}/${image}:${version}
