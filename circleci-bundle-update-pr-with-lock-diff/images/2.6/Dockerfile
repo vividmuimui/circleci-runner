@@ -1,4 +1,4 @@
-FROM circleci/ruby:2.5.1
+FROM circleci/ruby:2.6
 RUN gem update --system && \
     gem update bundler --no-document && \
     gem install circleci-bundle-update-pr lock_diff --no-document
