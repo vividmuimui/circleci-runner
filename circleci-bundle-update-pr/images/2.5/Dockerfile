@@ -1,5 +1,4 @@
 FROM circleci/ruby:2.5
-MAINTAINER yhirano55 <yhirano@me.com>
 RUN gem update --system && \
     gem update bundler --no-document && \
     gem install circleci-bundle-update-pr --no-document

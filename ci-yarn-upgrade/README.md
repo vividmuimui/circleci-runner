@@ -21,7 +21,7 @@ And **checkout SSH keys in your project**
 ```
 ci-yarn-upgrade-job:
   docker:
-    image: yhirano55/ci-yarn-upgrade:8
+    image: vividmuimui/ci-yarn-upgrade:8
   working_directory: ~/myapp
   steps:
     - checkout
@@ -32,7 +32,7 @@ Or your project is nested:
 ```
 ci-yarn-upgrade-job:
   docker:
-    image: yhirano55/ci-yarn-upgrade:8
+    image: vividmuimui/ci-yarn-upgrade:8
   working_directory: ~/myapp
   steps:
     - checkout

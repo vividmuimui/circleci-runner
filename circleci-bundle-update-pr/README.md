@@ -19,7 +19,7 @@ GITHUB_ACCESS_TOKEN=***YOUR_TOKEN***
 ```
 bundle-update-pr-job:
   docker:
-    image: yhirano55/circleci-bundle-update-pr:latest
+    image: vividmuimui/circleci-bundle-update-pr:latest
   working_directory: ~/myapp
   steps:
     - checkout
