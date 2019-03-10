@@ -10,7 +10,8 @@ jobs:
       - image: docker:stable
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: stable-git
       - run:
           name: Build and push images
           command: |
