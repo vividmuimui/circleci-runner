@@ -1,0 +1,45 @@
+version: 2.1
+
+jobs:
+  build_and_push:
+    parameters:
+      image_name:
+        description: image name
+        type: string
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build and push images
+          command: |
+            export IMAGE=<< parameters.image_name >>
+            sh -x bin/build_and_push_images
+
+workflows:
+  version: 2
+
+  build_all:
+    jobs: &all_builds
+      - build_and_push:
+          name: ci-yarn-upgrade
+          image_name: ci-yarn-upgrade
+
+      - build_and_push:
+          name: circleci-bundle-update-pr
+          image_name: circleci-bundle-update-pr
+
+      - build_and_push:
+          name: circleci-bundle-update-pr-with-lock-diff
+          image_name: circleci-bundle-update-pr-with-lock-diff
+
+  build_all_by_cron:
+    triggers:
+      - schedule:
+          cron: "0 0 * * 0" # JST 09:00 on everyday
+          filters:
+            branches:
+              only:
+                - master
+    jobs: *all_builds
