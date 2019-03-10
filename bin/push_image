@@ -9,5 +9,5 @@ version=${VERSION:-latest}
 
 cd "$(dirname "$0")/../${image}/images/${version}"
 
-docker login -u ${user} -p ${password}
+echo ${password} | docker login -u ${user} --password-stdin
 docker push ${user}/${image}:${version}
